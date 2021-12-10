@@ -7,8 +7,10 @@ fun day1() {
     var numIncreases = 0
 
     for (i in depths.indices) {
-        if (i > 0) {
-            if (depths[i].toInt() > depths[i - 1].toInt())
+        if (i > 0 && i + 2 < depths.size) {
+            if (depths[i].toInt() + depths[i + 1].toInt() + depths[i + 2].toInt() >
+                depths[i - 1].toInt() + depths[i].toInt() + depths[i + 1].toInt()
+            )
                 numIncreases++
         }
     }
