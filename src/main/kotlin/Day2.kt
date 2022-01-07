@@ -6,6 +6,7 @@ fun day2() {
     val commands = File("src/main/kotlin/day2-input.txt").readLines()
     var horizontal = 0
     var depth = 0
+    var aim = 0
 
     for (i in commands.indices) {
         val command = commands[i].split(" ")
@@ -15,9 +16,12 @@ fun day2() {
         val distance = command[1].toInt()
 
         when (direction) {
-            "forward" -> horizontal += distance
-            "up" -> depth -= distance
-            "down" -> depth += distance
+            "forward" -> {
+                horizontal += distance
+                depth += aim * distance
+            }
+            "up" -> aim -= distance
+            "down" -> aim += distance
             else -> throw RuntimeException("Invalid command at line ${i + 1}: '$command'")
         }
 
